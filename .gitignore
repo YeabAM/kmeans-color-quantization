@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+env/
+
+# C/C++/CUDA
+*.o
+*.obj
+*.so
+*.a
+*.exe
+*.out
+
+# ISPC
+*.ispc.h
+objs/
+
+# Data/results (keep folder structure, ignore large files)
+#data/images/*
+data/results/*
+!data/images/.gitkeep
+!data/results/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+test_image_io
+test_kmeans_init
+kmeans_cpu
+
