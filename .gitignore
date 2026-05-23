@@ -37,3 +37,6 @@ test_image_io
 test_kmeans_init
 kmeans_cpu
 
+kmeans_ispc
+src/ispc/kmeans_ispc_ispc.h
+!data/results/ispc_timings.csv
