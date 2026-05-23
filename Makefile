@@ -24,5 +24,14 @@ kmeans_ispc.o: src/ispc/kmeans_ispc.ispc
 kmeans_ispc: src/ispc/kmeans_ispc.c src/common/kmeans_init.c $(COMMON) kmeans_ispc.o
 	$(CC) $(CFLAGS) -I src/ispc -o $@ src/ispc/kmeans_ispc.c src/common/kmeans_init.c $(COMMON) src/ispc/kmeans_ispc.o $(LDFLAGS)
 
+# ---- Person 3: Naive CUDA kernel ----
+NVCC      = nvcc
+NVCCFLAGS = -O2 -gencode arch=compute_70,code=sm_70 --compiler-options "-Wall" -D_POSIX_C_SOURCE=199309L
+
+kmeans_naive: src/gpu_naive/kmeans_naive.cu \
+              src/common/kmeans_init.c \
+              src/common/image_io.c
+	$(NVCC) $(NVCCFLAGS) -o $@ $^ -lm
+
 clean:
-	rm -f test_image_io kmeans_cpu kmeans_ispc src/ispc/kmeans_ispc.o src/ispc/kmeans_ispc_ispc.h
+	rm -f test_image_io kmeans_cpu kmeans_ispc src/ispc/kmeans_ispc.o src/ispc/kmeans_ispc_ispc.h kmeans_naive
