@@ -216,7 +216,7 @@ int main(int argc, char **argv)
 
     Image out_img = float_to_image(h_out_f, img.width, img.height);
 
-    if (save_image(out_path, &out_img) != 0)
+    if (!save_image(out_path, &out_img))
         fprintf(stderr, "Warning: could not save %s\n", out_path);
     else
         printf("\nSaved quantized image: %s\n", out_path);

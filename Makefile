@@ -33,5 +33,11 @@ kmeans_naive: src/gpu_naive/kmeans_naive.cu \
               src/common/image_io.c
 	$(NVCC) $(NVCCFLAGS) -o $@ $^ -lm
 
+# ---- Person 4: Shared Memory CUDA + Parallel Reduction (Full GPU Pipeline) ----
+kmeans_optimized: src/gpu_optimized/kmeans_optimized.cu \
+                  src/common/kmeans_init.c \
+                  src/common/image_io.c
+	$(NVCC) $(NVCCFLAGS) -o $@ $^ -lm
+
 clean:
-	rm -f test_image_io kmeans_cpu kmeans_ispc src/ispc/kmeans_ispc.o src/ispc/kmeans_ispc_ispc.h kmeans_naive
+	rm -f test_image_io kmeans_cpu kmeans_ispc src/ispc/kmeans_ispc.o src/ispc/kmeans_ispc_ispc.h kmeans_naive kmeans_optimized
